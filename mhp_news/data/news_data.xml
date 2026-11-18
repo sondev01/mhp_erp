@@ -1,0 +1,27 @@
+<odoo noupdate="1">
+    <record id="source_laodong" model="mhp.news.source">
+        <field name="name">Báo Lao Động</field><field name="url">https://laodong.vn/</field>
+        <field name="link_xpath">//a[@href][.//img][contains(@href, '.ldo')]</field>
+    </record>
+    <record id="source_tuoitre" model="mhp.news.source">
+        <field name="name">Tuổi Trẻ — chủ đề báo Tuổi Trẻ Thủ Đô</field>
+        <field name="url">https://tuoitre.vn/bao-tuoi-tre-thu-do.html</field>
+        <field name="link_xpath">//a[@href][.//img][contains(@href, '.htm')][not(contains(@href, '.html'))]</field>
+    </record>
+    <record id="cron_fetch_news" model="ir.cron">
+        <field name="name">Tin tức: cập nhật nguồn</field>
+        <field name="model_id" ref="model_mhp_news_source"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_fetch()</field>
+        <field name="interval_number">30</field>
+        <field name="interval_type">minutes</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="active" eval="True"/>
+    </record>
+    <record id="website_menu_news" model="website.menu">
+        <field name="name">Tin tức</field>
+        <field name="url">/tin-tuc</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">60</field>
+    </record>
+</odoo>

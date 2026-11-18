@@ -1,0 +1,20 @@
+<odoo>
+    <template id="news_page" name="Tin tức">
+        <t t-call="website.layout">
+            <div id="wrap"><section class="container py-5">
+                <h1 class="mb-4">Tin tức</h1>
+                <div t-if="not articles" class="alert alert-info">Chưa có tin tức. Vui lòng quay lại sau.</div>
+                <div class="row g-4">
+                    <div t-foreach="articles" t-as="article" class="col-12 col-md-6 col-lg-4">
+                        <a t-att-href="article.url" target="_blank" rel="noopener noreferrer" class="card h-100 text-decoration-none text-body overflow-hidden">
+                            <img t-if="article.image_url" t-att-src="article.image_url" t-att-alt="article.name" loading="lazy" referrerpolicy="no-referrer" class="card-img-top" style="height:220px;object-fit:cover;"/>
+                            <div t-else="" class="bg-light d-flex align-items-center justify-content-center" style="height:220px;"><span class="fa fa-newspaper-o fa-3x text-muted"/></div>
+                            <div class="card-body"><h2 class="h5 mb-0" t-out="article.name"/></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-4"><t t-call="website.pager"/></div>
+            </section></div>
+        </t>
+    </template>
+</odoo>

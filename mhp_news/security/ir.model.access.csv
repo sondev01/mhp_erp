@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_news_source_admin,news.source.admin,model_mhp_news_source,base.group_system,1,1,1,1
+access_news_article_admin,news.article.admin,model_mhp_news_article,base.group_system,1,1,1,1

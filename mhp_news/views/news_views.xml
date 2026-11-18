@@ -1,0 +1,28 @@
+<odoo>
+    <record id="source_list" model="ir.ui.view">
+        <field name="name">mhp.news.source.list</field><field name="model">mhp.news.source</field>
+        <field name="arch" type="xml"><list><field name="name"/><field name="url"/><field name="last_success"/><field name="last_error"/><field name="active"/></list></field>
+    </record>
+    <record id="source_form" model="ir.ui.view">
+        <field name="name">mhp.news.source.form</field><field name="model">mhp.news.source</field>
+        <field name="arch" type="xml"><form>
+            <header><button name="action_fetch" type="object" string="Lấy tin ngay" class="oe_highlight"/></header>
+            <sheet><group><field name="name"/><field name="active"/><field name="url" widget="url"/><field name="fetch_limit"/></group>
+            <group string="Nâng cao"><field name="link_xpath" placeholder="Để trống để tự nhận diện bài viết"/></group>
+            <group><field name="last_fetch"/><field name="last_success"/><field name="last_result"/><field name="last_error"/></group></sheet>
+        </form></field>
+    </record>
+    <record id="article_list" model="ir.ui.view">
+        <field name="name">mhp.news.article.list</field><field name="model">mhp.news.article</field>
+        <field name="arch" type="xml"><list create="0"><field name="name"/><field name="source_id"/><field name="url" widget="url"/><field name="is_published"/><field name="create_date"/></list></field>
+    </record>
+    <record id="article_form" model="ir.ui.view">
+        <field name="name">mhp.news.article.form</field><field name="model">mhp.news.article</field>
+        <field name="arch" type="xml"><form create="0"><sheet><group><field name="name"/><field name="source_id"/><field name="url" widget="url"/><field name="image_url" widget="url"/><field name="is_published"/></group></sheet></form></field>
+    </record>
+    <record id="action_sources" model="ir.actions.act_window"><field name="name">Nguồn tin</field><field name="res_model">mhp.news.source</field><field name="view_mode">list,form</field></record>
+    <record id="action_articles" model="ir.actions.act_window"><field name="name">Bài viết</field><field name="res_model">mhp.news.article</field><field name="view_mode">list,form</field></record>
+    <menuitem id="menu_news" name="Tin tức" sequence="30" groups="base.group_system"/>
+    <menuitem id="menu_articles" name="Bài viết" parent="menu_news" action="action_articles" sequence="10"/>
+    <menuitem id="menu_sources" name="Nguồn tin" parent="menu_news" action="action_sources" sequence="20"/>
+</odoo>
